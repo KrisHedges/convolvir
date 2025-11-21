@@ -1,0 +1,49 @@
+# Next.js specific additions
+.next/
+out/
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.cjs
+
+# Testing
+/coverage
+
+# Production
+/build
+
+# Misc
+.DS_Store
+*.pem
+
+# Localhost
+.env*.local
+.env
+.npm
+.eslintcache
+.turbo
+*.log
+
+# Mac
+.DS_Store
+
+# IDEs and editors
+.vscode
+.idea
+.fleet
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Yarn 2 / Berry
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.yarn/install-state.gz
+.yarn/unplugged
