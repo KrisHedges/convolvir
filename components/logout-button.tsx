@@ -1,17 +1,22 @@
 "use client";
 
-import { createClient } from "@/lib/supabase/client";
-import { Button } from "@/components/ui/button";
+import { createBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
-export function LogoutButton() {
+export default function LogoutButton() {
   const router = useRouter();
 
-  const logout = async () => {
-    const supabase = createClient();
+  // Create a Supabase client configured to use cookies
+  const supabase = createBrowserClient();
+
+  const signOut = async () => {
     await supabase.auth.signOut();
-    router.push("/auth/login");
+    router.refresh();
   };
 
-  return <Button onClick={logout}>Logout</Button>;
+  return (
+    <button onClick={signOut}>
+      Logout
+    </button>
+  );
 }

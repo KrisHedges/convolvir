@@ -1,17 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabase/client";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { createBrowserClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -25,7 +14,7 @@ export function LoginForm({
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const supabase = createClient();
+  const supabase = createBrowserClient();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +39,7 @@ export function LoginForm({
     try {
       await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: "${window.location.origin}/auth/callback" },
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
       });
     } catch (e) {
       debugger;
@@ -62,7 +51,7 @@ export function LoginForm({
     try {
       await supabase.auth.signInWithOAuth({
         provider: "github",
-        options: { redirectTo: "${window.location.origin}/auth/callback" },
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
       });
     } catch (e) {
       setError(error instanceof Error ? error.message : "An error occurred");
@@ -70,20 +59,20 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
+    <div {...props}>
+      <div>
+        <div>
+          <h2>Login</h2>
+          <p>
             Enter your email below to login to your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+          </p>
+        </div>
+        <div>
           <form onSubmit={handleLogin}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
+            <div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
                   id="email"
                   type="email"
                   placeholder="m@example.com"
@@ -92,17 +81,16 @@ export function LoginForm({
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+              <div>
+                <div>
+                  <label htmlFor="password">Password</label>
                   <Link
                     href="/auth/forgot-password"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
                   </Link>
                 </div>
-                <Input
+                <input
                   id="password"
                   type="password"
                   required
@@ -110,16 +98,15 @@ export function LoginForm({
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              {error && <p>{error}</p>}
+              <button type="submit" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
-              </Button>
+              </button>
             </div>
-            <div className="mt-4 text-center text-sm">
+            <div>
               Don&apos;t have an account?{" "}
               <Link
                 href="/auth/sign-up"
-                className="underline underline-offset-4"
               >
                 Sign up
               </Link>
@@ -139,8 +126,8 @@ export function LoginForm({
               Sign In with GitHub
             </button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
