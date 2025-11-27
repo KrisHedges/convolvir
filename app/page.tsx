@@ -8,6 +8,7 @@ export default function Home() {
     <main>
       <nav>
         <Link href={"/"}>Home</Link>
+        <Link href={"/browse"}>Browse</Link>
         <ThemeSwitcher />
         <Suspense>
           <AuthButton />
