@@ -1,7 +1,8 @@
+import { ImpulseResponse } from "@/types/impulse-response";
 import { createServerClient } from "@/lib/supabase/server";
 import { cache } from "react";
 
-async function getSignedUrl(supabase: any, path: string) {
+export const getSignedUrl = async (supabase: any, path: string) => {
   let correctedPath = path.replace(/^impulse-responses\//, "");
   correctedPath = correctedPath.replace(/^\//, ""); // Remove leading slash
   const { data, error } = await supabase.storage
@@ -16,7 +17,7 @@ async function getSignedUrl(supabase: any, path: string) {
   return data.signedUrl;
 }
 
-export const getImpulseResponses = cache(async (page = 1, pageSize = 10) => {
+export const getImpulseResponses = cache(async (page = 1, pageSize = 12) => {
   const supabase = await createServerClient();
   const start = (page - 1) * pageSize;
   const end = start + pageSize - 1;
@@ -33,20 +34,50 @@ export const getImpulseResponses = cache(async (page = 1, pageSize = 10) => {
 
   if (data) {
     data = await Promise.all(
-      data.map(async (ir: any) => {
+      data.map(async (ir: ImpulseResponse) => {
         if (ir.wav_file_url) {
           ir.wav_file_url = await getSignedUrl(supabase, ir.wav_file_url);
+        }
+        if (typeof ir.amplitude_envelope === "string") {
+          try {
+            ir.amplitude_envelope = JSON.parse(ir.amplitude_envelope);
+          } catch (e) {
+            console.error("Error parsing amplitude_envelope:", e);
+            ir.amplitude_envelope = [];
+          }
+        }
+        // Handle frequency_bands_db
+        if (typeof ir.frequency_bands_db === "string") {
+          try {
+            const parsed = JSON.parse(ir.frequency_bands_db);
+            if (typeof parsed === "object" && parsed !== null && !Array.isArray(parsed)) {
+              ir.frequency_bands_db = parsed;
+            } else {
+              ir.frequency_bands_db = {};
+            }
+          } catch (e) {
+            console.error("Error parsing frequency_bands_db:", e);
+            ir.frequency_bands_db = {};
+          }
+        } else if (
+          typeof ir.frequency_bands_db === "object" &&
+          ir.frequency_bands_db !== null &&
+          !Array.isArray(ir.frequency_bands_db)
+        ) {
+          // It's already an object, keep it
+        } else {
+          ir.frequency_bands_db = {};
         }
         return ir;
       }),
     );
   }
 
-  return { data, count };
+  return { data: data as ImpulseResponse[], count };
 });
 
 export const searchImpulseResponses = cache(
-  async (query: string, page = 1, pageSize = 10) => {
+  async (query: string, page = 1, pageSize = 12) => {
     const supabase = await createServerClient();
     const start = (page - 1) * pageSize;
     const end = start + pageSize - 1;
@@ -64,15 +95,45 @@ export const searchImpulseResponses = cache(
 
     if (data) {
       data = await Promise.all(
-        data.map(async (ir: any) => {
+        data.map(async (ir: ImpulseResponse) => {
           if (ir.wav_file_url) {
             ir.wav_file_url = await getSignedUrl(supabase, ir.wav_file_url);
+          }
+          if (typeof ir.amplitude_envelope === "string") {
+            try {
+              ir.amplitude_envelope = JSON.parse(ir.amplitude_envelope);
+            } catch (e) {
+              console.error("Error parsing amplitude_envelope:", e);
+              ir.amplitude_envelope = [];
+            }
+          }
+          // Handle frequency_bands_db
+          if (typeof ir.frequency_bands_db === "string") {
+            try {
+              const parsed = JSON.parse(ir.frequency_bands_db);
+              if (typeof parsed === "object" && parsed !== null && !Array.isArray(parsed)) {
+                ir.frequency_bands_db = parsed;
+              } else {
+                ir.frequency_bands_db = {};
+              }
+            } catch (e) {
+              console.error("Error parsing frequency_bands_db:", e);
+              ir.frequency_bands_db = {};
+            }
+          } else if (
+            typeof ir.frequency_bands_db === "object" &&
+            ir.frequency_bands_db !== null &&
+            !Array.isArray(ir.frequency_bands_db)
+          ) {
+            // It's already an object, keep it
+          } else {
+            ir.frequency_bands_db = {};
           }
           return ir;
         }),
       );
     }
 
-    return { data, count };
+    return { data: data as ImpulseResponse[], count };
   },
 );

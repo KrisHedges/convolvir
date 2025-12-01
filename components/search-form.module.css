@@ -1,0 +1,10 @@
+.form {
+    width: 100%;
+
+    input {
+        width: 80%;
+        display: block;
+        margin: 1rem auto 2rem auto;
+        padding: 1rem;
+    }
+}

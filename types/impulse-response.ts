@@ -1,0 +1,30 @@
+export interface ImpulseResponse {
+    id: number;
+    created_at: string;
+    name: string | null;
+    type: string | null;
+    duration_category: string | null;
+    brightness_category: string | null;
+    texture_category: string | null;
+    source_type: string | null;
+    source_location: string | null;
+    source_architecture: string | null;
+    source_manufacturer: string | null;
+    source_model: string | null;
+    space_type: string | null;
+    space_duration_category: string | null;
+    space_brightness_category: string | null;
+    space_texture_category: string | null;
+    space_size: string | null;
+    original_path: string | null;
+    output_wav_path: string | null;
+    duration_seconds: number | null;
+    rms_energy: number | null;
+    brightness_spectral_centroid: number | null;
+    texture_spectral_flatness: number | null;
+    peak_count: number | null;
+    estimated_decay_time: string | null;
+    amplitude_envelope: number[] | null;
+    frequency_bands_db: Record<string, number> | null;
+    wav_file_url: string | null;
+}

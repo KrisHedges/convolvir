@@ -1,20 +1,24 @@
-import AuthButton from "@/components/auth-button";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import Link from "next/link";
 import { Suspense } from "react";
-import { Player } from "@/components/player";
-export default function Home() {
+import { ImpulseResponsesGrid } from "@/components/grid";
+import { SearchForm } from "@/components/search-form";
+
+export default function BrowsePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; page?: string }>;
+}) {
   return (
-    <main>
-      <nav>
-        <Link href={"/"}>Home</Link>
-        <Link href={"/browse"}>Browse</Link>
-        <ThemeSwitcher />
-        <Suspense>
-          <AuthButton />
-        </Suspense>
-      </nav>
-      <Player />
-    </main>
+    <>
+      <header>
+        <h1>ConvolvIR</h1>
+      </header>
+      <Suspense fallback={<div>Loading search...</div>}>
+        <SearchForm />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ImpulseResponsesGrid searchParams={searchParams} />
+      </Suspense>
+    </>
   );
 }
+

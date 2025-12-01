@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import { Suspense } from "react";
+import Link from "next/link";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import AuthButton from "@/components/auth-button";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -33,7 +37,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <header>
+            <nav>
+              <ThemeSwitcher />
+              <Suspense>
+                <AuthButton />
+              </Suspense>
+            </nav>
+          </header>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
