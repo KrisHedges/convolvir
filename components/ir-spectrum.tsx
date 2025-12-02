@@ -44,7 +44,7 @@ export function IRSpectrum({ data }: { data: Record<string, number> }) {
                         style={{ height: `${item.height}%` }}
                         title={`${item.label}: ${item.value.toFixed(1)} dB`}
                     />
-                    <span className="ir-spectrum-label">{item.label.replace("hz", "")}</span>
+                    <span className="ir-spectrum-label">{item.label.replaceAll("000hz", "kHz").replaceAll("000", "k")}</span>
                 </div>
             ))}
         </div>

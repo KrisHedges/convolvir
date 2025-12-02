@@ -49,8 +49,8 @@ header {
     height: 100%;
     padding: 1em 1em 2em 1em;
     box-sizing: border-box;
-    background-color: hsl(from Canvas h s l / 0.8);
-    backdrop-filter: blur(34px) saturate(200%);
+    background: radial-gradient(hsl(from Canvas h s l / 1), hsl(from Canvas h s l / 0.8));
+    backdrop-filter: blur(14px) saturate(200%);
     border-top: 1px solid hsl(from CanvasText h s l / 0.25);
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -69,7 +69,10 @@ header {
     .convolver-ir {
         display: grid;
         align-items: center;
-        gap: 0.5em;
+        gap: 1em;
+        margin-top: 1em;
+        grid-template-rows: max-content;
+        height: fit-content;
 
         .convolver-ir-info {
             font-size: .85rem;
@@ -111,8 +114,6 @@ header {
         overflow: hidden;
     }
 }
-
-
 
 .ir-card-header {
     display: flex;
@@ -173,7 +174,6 @@ header {
     margin-right: 0.25rem;
 }
 
-
 .ir-spectrum,
 .ir-envelope {
     width: 100%;
@@ -183,8 +183,10 @@ header {
 .ir-envelope svg {
     width: 100%;
     height: 60px;
-    fill: rgba(139, 82, 199, 0.2);
-    color: rgba(139, 82, 199, 0.2);
+    fill: rgba(139, 82, 199);
+    color: rgba(139, 82, 199);
+    background-color: Canvas;
+    border: 1px solid hsl(from CanvasText h s l / 0.25);
 }
 
 .ir-spectrum-container {
@@ -197,14 +199,17 @@ header {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 4px;
-    height: 60px;
+    gap: 0px;
+    column-gap: 4px;
+    row-gap: 0px;
+    height: 80px;
 }
 
 .ir-envelope-title,
 .ir-spectrum-title {
     width: 100%;
     font-size: 0.85rem;
+    margin-bottom: 0.5em;
 }
 
 .ir-spectrum-item {
@@ -214,27 +219,21 @@ header {
     flex: 1;
     height: 100%;
     justify-content: flex-end;
-    gap: 4px;
 }
 
 .ir-spectrum-bar {
-    background-color: rgba(139, 82, 199, 0.4);
+    background-color: rgba(139, 82, 199);
     width: 100%;
     border-radius: 2px;
 }
 
 .ir-spectrum-label {
-    font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.675rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
     max-width: 100%;
     text-align: center;
-}
-
-.ir-card-footer {
-    margin-top: auto;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: CanvasText;
 }
