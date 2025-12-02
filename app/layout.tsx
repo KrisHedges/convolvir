@@ -13,8 +13,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "ConvolvIR.com",
+  description: "A free library of impulse responses for convolution",
 };
 
 const geistSans = Geist({
@@ -40,9 +40,14 @@ export default function RootLayout({
           <header>
             <nav>
               <ThemeSwitcher />
-              <Suspense>
-                <AuthButton />
-              </Suspense>
+              <Link href="/">
+                <h1>CONVOLV<span>IR</span></h1>
+              </Link>
+              <div className="auth-button-container">
+                <Suspense>
+                  <AuthButton />
+                </Suspense>
+              </div>
             </nav>
           </header>
           <main>{children}</main>

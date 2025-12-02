@@ -1,28 +1,19 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { Lineicons } from "@lineiconshq/react-lineicons";
+import { Sun1Outlined, MoonHalfRight5Outlined } from "@lineiconshq/free-icons";
+import styles from "./theme-switcher.module.css";
 
 const ThemeSwitcher = () => {
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <button onClick={toggleTheme}>
-      Toggle Theme (Current: {theme})
+    <button className={`${styles.themeSwitcher}`} onClick={toggleTheme} aria-label="Toggle Theme">
+      {theme === "light" ? <Lineicons icon={MoonHalfRight5Outlined} /> : <Lineicons icon={Sun1Outlined} />}
     </button>
   );
 };

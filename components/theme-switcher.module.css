@@ -1,0 +1,8 @@
+.themeSwitcher {
+    border-radius: 100%;
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    border: none;
+    background-color: hsl(from CanvasText h s l / 0.15);
+}

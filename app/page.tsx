@@ -9,9 +9,6 @@ export default function BrowsePage({
 }) {
   return (
     <>
-      <header>
-        <h1>ConvolvIR</h1>
-      </header>
       <Suspense fallback={<div>Loading search...</div>}>
         <SearchForm />
       </Suspense>
