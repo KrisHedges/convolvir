@@ -2,6 +2,8 @@
 
 import { createBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { PowerButtonOutlined } from "@lineiconshq/free-icons";
+import Lineicons from "@lineiconshq/react-lineicons";
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -15,8 +17,8 @@ export default function LogoutButton() {
   };
 
   return (
-    <button onClick={signOut}>
-      Logout
+    <button className="circle-button" onClick={signOut}>
+      <Lineicons icon={PowerButtonOutlined} />
     </button>
   );
 }

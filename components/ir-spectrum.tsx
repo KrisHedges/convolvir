@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, CSSProperties } from "react";
 
 export function IRSpectrum({ data }: { data: Record<string, number> }) {
     const bars = useMemo(() => {
@@ -41,7 +41,7 @@ export function IRSpectrum({ data }: { data: Record<string, number> }) {
                 <div key={i} className="ir-spectrum-item">
                     <div
                         className="ir-spectrum-bar"
-                        style={{ height: `${item.height}%` }}
+                        style={{ "--bar-height": `${item.height}%` } as CSSProperties}
                         title={`${item.label}: ${item.value.toFixed(1)} dB`}
                     />
                     <span className="ir-spectrum-label">{item.label.replaceAll("000hz", "kHz").replaceAll("000", "k")}</span>

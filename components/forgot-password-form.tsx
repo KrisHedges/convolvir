@@ -32,59 +32,38 @@ export function ForgotPasswordForm({
   };
 
   return (
-    <div {...props}>
+    <div className="auth-form" {...props}>
       {success ? (
-        <div>
-          <div>
-            <h2>Check Your Email</h2>
-            <p>Password reset instructions sent</p>
-          </div>
-          <div>
-            <p>
-              If you registered using your email and password, you will receive
-              a password reset email.
-            </p>
-          </div>
-        </div>
+        <>
+          <h2>Check Your Email</h2>
+          <p>Password reset instructions sent</p>
+          <p>
+            If you registered using your email and password, you will receive
+            a password reset email.
+          </p>
+        </>
       ) : (
-        <div>
-          <div>
-            <h2>Reset Your Password</h2>
-            <p>
-              Type in your email and we&apos;ll send you a link to reset your
-              password
-            </p>
-          </div>
-          <div>
-            <form onSubmit={handleForgotPassword}>
-              <div>
-                <div>
-                  <label htmlFor="email">Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="m@example.com"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                {error && <p>{error}</p>}
-                <button type="submit" disabled={isLoading}>
-                  {isLoading ? "Sending..." : "Send reset email"}
-                </button>
-              </div>
-              <div>
-                Already have an account?{" "}
-                <Link
-                  href="/auth/login"
-                >
-                  Login
-                </Link>
-              </div>
-            </form>
-          </div>
-        </div>
+        <form onSubmit={handleForgotPassword}>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="m@example.com"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {error && <p>{error}</p>}
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Sending..." : "Send reset email"}
+          </button>
+          Already have an account?{" "}
+          <Link
+            href="/auth/login"
+          >
+            Login
+          </Link>
+        </form>
       )}
     </div>
   );

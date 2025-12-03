@@ -45,64 +45,42 @@ export function SignUpForm({
   };
 
   return (
-    <div {...props}>
-      <div>
-        <div>
-          <h2>Sign up</h2>
-          <p>Create a new account</p>
-        </div>
-        <div>
-          <form onSubmit={handleSignUp}>
-            <div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <div>
-                  <label htmlFor="password">Password</label>
-                </div>
-                <input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div>
-                <div>
-                  <label htmlFor="repeat-password">Repeat Password</label>
-                </div>
-                <input
-                  id="repeat-password"
-                  type="password"
-                  required
-                  value={repeatPassword}
-                  onChange={(e) => setRepeatPassword(e.target.value)}
-                />
-              </div>
-              {error && <p>{error}</p>}
-              <button type="submit" disabled={isLoading}>
-                {isLoading ? "Creating an account..." : "Sign up"}
-              </button>
-            </div>
-            <div>
-              Already have an account?{" "}
-              <Link href="/auth/login">
-                Login
-              </Link>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div className="auth-form" {...props}>
+      <form onSubmit={handleSignUp}>
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="m@example.com"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <label htmlFor="repeat-password">Confirm Password</label>
+        <input
+          id="repeat-password"
+          type="password"
+          required
+          value={repeatPassword}
+          onChange={(e) => setRepeatPassword(e.target.value)}
+        />
+        {error && <p>{error}</p>}
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Creating an account..." : "Sign up"}
+        </button>
+        Already have an account?{" "}
+        <Link href="/auth/login">
+          Login
+        </Link>
+      </form>
     </div>
   );
 }

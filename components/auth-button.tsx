@@ -10,11 +10,12 @@ export default async function AuthButton() {
   } = await supabase.auth.getUser();
 
   return user ? (
-    <LogoutButton />
+    <>
+      <LogoutButton />
+    </>
   ) : (
     <>
       <Link href="/auth/login">Sign in</Link>
-      <Link href="/auth/sign-up">Sign up</Link>
     </>
   );
 }

@@ -1,0 +1,68 @@
+.convolver-player-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 1em 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &>button {
+        position: absolute;
+        top: 1.5em;
+        right: 1.5em;
+    }
+
+    .convolver-player {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 2.1em auto;
+        height: 100%;
+        padding: 1em 1em 2em 1em;
+        box-sizing: border-box;
+        background: radial-gradient(hsl(from Canvas h s l / 1), hsl(from Canvas h s l / 0.8));
+        backdrop-filter: blur(14px) saturate(200%);
+        border-top: 1px solid hsl(from CanvasText h s l / 0.25);
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+
+        .convolver-examples {
+            display: grid;
+            gap: 0.35em;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+
+            button {
+                height: 100%;
+            }
+        }
+
+        .convolver-ir {
+            display: grid;
+            align-items: center;
+            gap: 1em;
+            margin-top: 1em;
+            grid-template-rows: max-content;
+            height: fit-content;
+
+            .convolver-ir-info {
+                font-size: .85rem;
+                align-content: left;
+            }
+
+            .convolver-waveform-canvas {
+                width: 100%;
+                height: 100px;
+                background-color: Canvas;
+                box-shadow: 0 0 0.95px ButtonBorder;
+            }
+
+            .convolver-controls {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+            }
+        }
+    }
+}

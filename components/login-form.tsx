@@ -58,75 +58,52 @@ export function LoginForm({
   };
 
   return (
-    <div {...props}>
-      <div>
-        <div>
-          <h2>Login</h2>
-          <p>
-            Enter your email below to login to your account
-          </p>
-        </div>
-        <div>
-          <form onSubmit={handleLogin}>
-            <div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <div>
-                  <label htmlFor="password">Password</label>
-                  <Link
-                    href="/auth/forgot-password"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
-                <input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              {error && <p>{error}</p>}
-              <button type="submit" disabled={isLoading}>
-                {isLoading ? "Logging in..." : "Login"}
-              </button>
-            </div>
-            <div>
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/auth/sign-up"
-              >
-                Sign up
-              </Link>
-            </div>
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              title="Sign In with Google"
-            >
-              Sign In with Google/Gmail
-            </button>
-            <button
-              type="button"
-              onClick={handleGitHubLogin}
-              title="Sign In with GitHub"
-            >
-              Sign In with GitHub
-            </button>
-          </form>
-        </div>
+    <>
+      <div className="auth-form" {...props}>
+        <form onSubmit={handleLogin}>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="m@example.com"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor="password">Password <Link href="/auth/forgot-password">Forgot your password?</Link></label>
+          <input
+            id="password"
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error && <p>{error}</p>}
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/auth/sign-up"
+          >
+            Sign up
+          </Link>
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            title="Sign In with Google"
+          >
+            Sign In with Google/Gmail
+          </button>
+          <button
+            type="button"
+            onClick={handleGitHubLogin}
+            title="Sign In with GitHub"
+          >
+            Sign In with GitHub
+          </button>
+        </form>
       </div>
-    </div>
+    </>
   );
 }

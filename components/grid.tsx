@@ -25,7 +25,6 @@ export async function ImpulseResponsesGrid({
 
   return (
     <div>
-      <Paginator query={query || ""} page={page} totalPages={totalPages} />
       <div className="ir-grid">
         {impulseResponses &&
           impulseResponses.map((ir: ImpulseResponse) => (
@@ -73,13 +72,13 @@ export async function ImpulseResponsesGrid({
                 )}
               </div>
               <div className="ir-envelope">
-                <div className="ir-envelope-title">Amplitude Envelope (Approx.)</div>
+                <div className="ir-envelope-title">Envelope Shape:</div>
                 {ir.amplitude_envelope && (
                   <IREnvelope data={ir.amplitude_envelope} />
                 )}
               </div>
               <div className="ir-spectrum-container">
-                <div className="ir-spectrum-title">Frequency Bands (dB)</div>
+                <div className="ir-spectrum-title">Frequency Strength:</div>
                 {ir.frequency_bands_db && (
                   <IRSpectrum data={ir.frequency_bands_db} />
                 )}
@@ -87,7 +86,7 @@ export async function ImpulseResponsesGrid({
             </div>
           ))}
       </div>
-      <Paginator query={query || ""} page={page} totalPages={totalPages} />
+      <Paginator query={query || ""} page={page} totalPages={totalPages} totalCount={count || 0} pageSize={pageSize} />
     </div>
   );
 }
