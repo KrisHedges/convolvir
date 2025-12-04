@@ -4,7 +4,6 @@ import {
 } from "@/app/data/impulse-responses";
 import { ImpulseResponse } from "@/types/impulse-response";
 import { Player } from "@/components/player";
-import Link from "next/link";
 import Paginator from "./paginator";
 import { IREnvelope } from "./ir-envelope";
 import { IRSpectrum } from "./ir-spectrum";

@@ -7,6 +7,7 @@ export function IRSpectrum({ data }: { data: Record<string, number> }) {
         if (!data || Object.keys(data).length === 0) return [];
 
         const entries = Object.entries(data);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const values = entries.map(([_, val]) => val);
 
         // Find min and max to auto-scale
