@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import AuthButton from "@/components/auth-button";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -51,6 +53,8 @@ export default function RootLayout({
             </nav>
           </header>
           <main>{children}</main>
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
