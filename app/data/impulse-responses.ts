@@ -1,8 +1,9 @@
 import { ImpulseResponse } from "@/types/impulse-response";
 import { createServerClient } from "@/lib/supabase/server";
 import { cache } from "react";
+import { SupabaseClient } from "@supabase/supabase-js";
 
-export const getSignedUrl = async (supabase: any, path: string) => {
+export const getSignedUrl = async (supabase: SupabaseClient, path: string) => {
   let correctedPath = path.replace(/^impulse-responses\//, "");
   correctedPath = correctedPath.replace(/^\//, ""); // Remove leading slash
   const { data, error } = await supabase.storage
@@ -22,10 +23,13 @@ export const getImpulseResponses = cache(async (page = 1, pageSize = 12) => {
   const start = (page - 1) * pageSize;
   const end = start + pageSize - 1;
 
-  let { data, error, count } = await supabase
+  const response = await supabase
     .from("impulse_responses")
     .select("*", { count: "exact" })
     .range(start, end);
+  
+  let { data } = response;
+  const { error, count } = response;
 
   if (error) {
     console.error("Error fetching impulse responses:", error);
@@ -82,11 +86,14 @@ export const searchImpulseResponses = cache(
     const start = (page - 1) * pageSize;
     const end = start + pageSize - 1;
 
-    let { data, error, count } = await supabase
+    const response = await supabase
       .from("impulse_responses")
       .select("*", { count: "exact" })
       .or(`name.ilike.%${query}%,type.ilike.%${query}%`)
       .range(start, end);
+
+    let { data } = response;
+    const { error, count } = response;
 
     if (error) {
       console.error("Error searching impulse responses:", error);
