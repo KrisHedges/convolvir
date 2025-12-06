@@ -62,17 +62,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@convolver-player/core@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "@convolver-player/core@npm:1.3.0"
-  checksum: 10c0/63fb9e001fce945f3d52f9f8ef9d2a3d88d5f4a573f3183f7cb40933e908351a171317b20f34297e42146ee528c6bfb2a79f84ebaa0020e7611b7de1fcd23627
+"@convolver-player/core@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@convolver-player/core@npm:1.4.1"
+  checksum: 10c0/07d470096c03c1ac3363493a805a2e9f4fd1b02fc25151311b5cd08893c831b6ae6e401ee95067a89ee4b9e5af2d4977f92a43da7a76b59162dbb27c8f4b73c6
   languageName: node
   linkType: hard
 
-"@convolver-player/react@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "@convolver-player/react@npm:0.5.0"
-  checksum: 10c0/1a8cdcaadd407282125e610245a80165bec518dc4b8eaaebd7a012b194dc643dd76cbd7971971d4d85461025608cfa4fc70e2c0adc154585a7fd4c1f8f34fe08
+"@convolver-player/react@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@convolver-player/react@npm:0.5.1"
+  checksum: 10c0/da0bb08a69c55f6f112a5003c5dad57830d81b8963810a83dc6a17a2dee064071b856a09596ff41138ccd86c3234ecfd3d7fc8af973387bd3d1c714cc630ab85
   languageName: node
   linkType: hard
 
@@ -4408,8 +4408,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@convolver-player/core": "npm:^1.3.0"
-    "@convolver-player/react": "npm:^0.5.0"
+    "@convolver-player/core": "npm:^1.4.1"
+    "@convolver-player/react": "npm:^0.5.1"
     "@eslint/eslintrc": "npm:^3"
     "@lineiconshq/free-icons": "npm:^1.0.3"
     "@lineiconshq/react-lineicons": "npm:^1.0.5"
