@@ -251,6 +251,12 @@ main {
         z-index: 0;
         position: relative;
         overflow: hidden;
+        transition: all linear 90ms;
+        &:hover,
+        &:focus-within {
+          transform: scale(1.025);
+          background: hsl(from CanvasText h s l / .05);
+        }
 
         .ir-card-header {
             display: flex;
@@ -261,6 +267,16 @@ main {
                 position: absolute;
                 top: 1em;
                 right: 1em;
+            }
+
+            &>button.hidden-player-button {
+              display: block;
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
             }
         }
     }
@@ -297,7 +313,7 @@ main {
 }
 
 .ir-tag {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
     background: hsl(from CanvasText h s l / 0.08);

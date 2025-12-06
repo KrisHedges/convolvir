@@ -13,7 +13,10 @@ export function Player({ src }: { src: string }) {
   return (
     <>
       <Activity mode={!open ? "visible" : "hidden"}>
-        <button onClick={() => togglePlayer()}>Preview</button>
+        <>
+          <button onClick={() => togglePlayer()} className="hidden-player-button"></button>
+          <button onClick={() => togglePlayer()}>Preview</button>
+        </>
       </Activity>
       <Activity mode={open ? "visible" : "hidden"}>
         <div className="convolver-player-container">
